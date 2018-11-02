@@ -1,0 +1,9 @@
+canvas{
+  width:800px !important;
+  height:400px !important;
+}
+
+canvas#graph {
+  width:100% !important;
+  height:60% !important;
+}
