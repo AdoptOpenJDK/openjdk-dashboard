@@ -75,8 +75,6 @@ function graph(version, tag) {
                   stacked: false,
                   beginAtZero: true,
                   ticks: {
-                    maxRotation: 90,
-                    minRotation: 90,
                     stepSize: 1,
                     min: 0,
                     autoSkip: false

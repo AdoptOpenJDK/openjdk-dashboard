@@ -37,6 +37,31 @@ function graph(version) {
                 borderWidth: 1
               }]
             },
+            options: {
+              responsive: true,
+              tooltips: {
+                mode: 'index',
+                intersect: false,
+              },
+              scales: {
+                yAxes: [{
+                  ticks: {
+                    beginAtZero: true
+                  }
+                }],
+                xAxes: [{
+                  stacked: false,
+                  beginAtZero: true,
+                  type: 'category',
+                  labels: labels,
+                  ticks: {
+                    stepSize: 1,
+                    min: 0,
+                    autoSkip: false
+                  }
+                }]
+              }
+            }
           });
         });
       }
