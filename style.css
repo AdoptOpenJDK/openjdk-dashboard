@@ -1,9 +1,30 @@
-canvas{
-  width:800px !important;
-  height:400px !important;
+canvas {
+  width: 100% !important;
+  height: 380px !important;
 }
 
 canvas#graph {
-  width:100% !important;
-  height:60% !important;
+  width: 100% !important;
+  height: 60% !important;
+}
+
+.box {
+  position: absolute !important;
+}
+
+.box.top {
+  top: 0 !important;
+  padding-top: 40px;
+}
+
+.box.right {
+  right: 0 !important;
+}
+
+.box.left: {
+  left: 0 !important;
+}
+
+.box.bottom {
+  bottom: 0 !important;
 }

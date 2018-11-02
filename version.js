@@ -27,15 +27,8 @@ function graph(version, tag) {
               datasets: [{
                 label: 'Summary of ' + tag + ' Downloads',
                 data: downloads,
-                backgroundColor: [
-                  'rgba(255, 99, 132, 0.2)',
-                  'rgba(54, 162, 235, 0.2)',
-
-                ],
-                borderColor: [
-                  'rgba(255,99,132,1)',
-                  'rgba(54, 162, 235, 1)',
-                ],
+                backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                borderColor: 'rgba(54, 162, 235, 1)',
                 borderWidth: 1
               }]
             },

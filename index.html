@@ -12,10 +12,14 @@
 </head>
 
 <body>
-  <canvas id="jdk11"></canvas>
-  <canvas id="jdk10"></canvas>
-  <canvas id="jdk9"></canvas>
-  <canvas id="jdk8"></canvas>
+  <div class="text-center">
+    <h1>AdoptOpenJDK GitHub download stats per release</h1></div>
+  <section class="graphs">
+    <div class="box top left"><canvas id="jdk11"></canvas></div>
+    <div class="box top right"><canvas id="jdk10" </canvas></div>
+    <div class="box bottom left"><canvas id="jdk9"></canvas></div>
+    <div class="box bottom right"><canvas id="jdk8"></canvas></div>
+  </section>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.slim.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
   <script src="./index.js"></script>
