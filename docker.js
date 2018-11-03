@@ -1,6 +1,6 @@
-function graph(version, tag) {
-  var url = 'https://api.adoptopenjdk.net/v2/info/releases/open' + version + '?release=' + tag;
-  fetch(url.replace("+", "%2B"))
+function graph(version) {
+  fetch('https://cors-anywhere.herokuapp.com/https://hub.docker.com/v2/repositories/adoptopenjdk?n=40', {
+    })
     .then(
       function(response) {
         if (response.status !== 200) {
@@ -11,21 +11,22 @@ function graph(version, tag) {
 
         // Examine the text in the response
         response.json().then(function(data) {
+          console.log(data)
           var labels = [];
           var downloads = [];
-          for (var platform of data[0].binaries) {
-            console.log(platform)
-            labels.push(platform.os + '-' + platform.architecture + '-' + platform.binary_type + '-' + platform.openjdk_impl)
-            downloads.push(platform.download_count)
+          for (var tag of data.results) {
+            console.log(tag)
+            labels.push(tag.name)
+            downloads.push(tag.pull_count)
           }
-          var ctx = document.getElementById("graph");
+          var graphVersion = document.getElementById('graph').getContext('2d');
           Chart.defaults.global.defaultFontSize = 20;
-          var myChart = new Chart(ctx, {
+          var myChart = new Chart(graphVersion, {
             type: 'bar',
             data: {
               labels: labels,
               datasets: [{
-                label: 'Summary of ' + tag + ' Downloads',
+                label: 'Docker Repo Pulls',
                 data: downloads,
                 backgroundColor: 'rgba(54, 162, 235, 0.2)',
                 borderColor: 'rgba(54, 162, 235, 1)',
@@ -68,8 +69,6 @@ function graph(version, tag) {
                   stacked: false,
                   beginAtZero: true,
                   ticks: {
-                    maxRotation: 90,
-                    minRotation: 90,
                     stepSize: 1,
                     min: 0,
                     autoSkip: false
@@ -78,7 +77,6 @@ function graph(version, tag) {
               }
             }
           });
-
         });
       }
     )
@@ -87,10 +85,4 @@ function graph(version, tag) {
     });
 }
 
-var url_string = window.location.href;
-var url = new URL(url_string);
-var version = url.searchParams.get("version");
-if (!version) {alert ('please specify a version e.g "?version=jdk8|jdk11"')}
-var tag = url.searchParams.get("tag");
-if (!tag) {alert ('please specify a version e.g "?tag=jdk8u172-b11"')}
-graph(version, tag)
+graph()
