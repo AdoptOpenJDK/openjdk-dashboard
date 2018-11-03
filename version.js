@@ -19,7 +19,7 @@ function graph(version, tag) {
             downloads.push(platform.download_count)
           }
           var ctx = document.getElementById("graph");
-          Chart.defaults.global.defaultFontSize = 40;
+          Chart.defaults.global.defaultFontSize = 20;
           var myChart = new Chart(ctx, {
             type: 'bar',
             data: {
@@ -68,6 +68,8 @@ function graph(version, tag) {
                   stacked: false,
                   beginAtZero: true,
                   ticks: {
+                    maxRotation: 90,
+                    minRotation: 90,
                     stepSize: 1,
                     min: 0,
                     autoSkip: false
