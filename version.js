@@ -49,7 +49,7 @@ function graph(version, tag) {
                     var meta = chartInstance.controller.getDatasetMeta(i);
                     meta.data.forEach(function(bar, index) {
                       var data = dataset.data[index];
-                      ctx.fillText(data, bar._model.x, bar._model.y - 5);
+                      ctx.fillText(Comma(data), bar._model.x, bar._model.y - 5);
                     });
                   });
                 }
@@ -86,10 +86,31 @@ function graph(version, tag) {
     });
 }
 
+function Comma(Num) { //function to add commas to textboxes
+  Num += '';
+  Num = Num.replace(',', '');
+  Num = Num.replace(',', '');
+  Num = Num.replace(',', '');
+  Num = Num.replace(',', '');
+  Num = Num.replace(',', '');
+  Num = Num.replace(',', '');
+  x = Num.split('.');
+  x1 = x[0];
+  x2 = x.length > 1 ? '.' + x[1] : '';
+  var rgx = /(\d+)(\d{3})/;
+  while (rgx.test(x1))
+    x1 = x1.replace(rgx, '$1' + ',' + '$2');
+  return x1 + x2;
+}
+
 var url_string = window.location.href;
 var url = new URL(url_string);
 var version = url.searchParams.get("version");
-if (!version) {alert ('please specify a version e.g "?version=jdk8|jdk11"')}
+if (!version) {
+  alert('please specify a version e.g "?version=jdk8|jdk11"')
+}
 var tag = url.searchParams.get("tag");
-if (!tag) {alert ('please specify a version e.g "?tag=jdk8u172-b11"')}
+if (!tag) {
+  alert('please specify a version e.g "?tag=jdk8u172-b11"')
+}
 graph(version, tag)
