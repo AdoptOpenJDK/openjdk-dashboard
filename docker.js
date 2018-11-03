@@ -1,5 +1,5 @@
 function graph(version) {
-  fetch('https://cors-anywhere.herokuapp.com/https://hub.docker.com/v2/repositories/adoptopenjdk', {})
+  fetch('https://cors-anywhere.herokuapp.com/https://hub.docker.com/v2/repositories/adoptopenjdk?page_size=100', {})
     .then(
       function(response) {
         if (response.status !== 200) {
