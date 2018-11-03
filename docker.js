@@ -1,5 +1,5 @@
 function graph(version) {
-  fetch('https://cors-anywhere.herokuapp.com/https://hub.docker.com/v2/repositories/adoptopenjdk?n=40', {
+  fetch('https://cors-anywhere.herokuapp.com/https://hub.docker.com/v2/repositories/adoptopenjdk', {
     })
     .then(
       function(response) {
@@ -61,7 +61,6 @@ function graph(version) {
               scales: {
                 yAxes: [{
                   ticks: {
-                    display: false,
                     beginAtZero: true
                   }
                 }],

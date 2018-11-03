@@ -60,7 +60,6 @@ function graph(version, tag) {
               scales: {
                 yAxes: [{
                   ticks: {
-                    display: false,
                     beginAtZero: true
                   }
                 }],

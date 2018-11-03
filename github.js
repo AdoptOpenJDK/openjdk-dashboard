@@ -17,7 +17,7 @@ function graph(version) {
             downloads.push(data[release].download_count)
           }
           var graphVersion = document.getElementById(version).getContext('2d');
-          Chart.defaults.global.defaultFontSize = 20;
+          Chart.defaults.global.defaultFontSize = 15;
           var myChart = new Chart(graphVersion, {
             type: 'bar',
             data: {
@@ -47,18 +47,18 @@ function graph(version) {
                     var meta = chartInstance.controller.getDatasetMeta(i);
                     meta.data.forEach(function(bar, index) {
                       var data = dataset.data[index];
-                      ctx.fillText(data, bar._model.x, bar._model.y - 5);
+                      ctx.fillText(Comma(data), bar._model.x, bar._model.y - 5);
                     });
                   });
                 }
               },
+              onClick: graphClickEvent,
               tooltips: {
                 "enabled": false
               },
               scales: {
                 yAxes: [{
                   ticks: {
-                    display: false,
                     beginAtZero: true
                   }
                 }],
@@ -80,7 +80,28 @@ function graph(version) {
     .catch(function(err) {
       console.log('Fetch Error :-S', err);
     });
+
+  function graphClickEvent(event, array) {
+    if (array[0]) {
+      tag = encodeURIComponent(array[0]._model.label)
+      console.log(tag)
+      window.open('./version.html?version=' + version + '&tag=' + tag ,'_blank');
+    }
+  }
 }
+
+function Comma(Num) { //function to add commas to textboxes
+        Num += '';
+        Num = Num.replace(',', ''); Num = Num.replace(',', ''); Num = Num.replace(',', '');
+        Num = Num.replace(',', ''); Num = Num.replace(',', ''); Num = Num.replace(',', '');
+        x = Num.split('.');
+        x1 = x[0];
+        x2 = x.length > 1 ? '.' + x[1] : '';
+        var rgx = /(\d+)(\d{3})/;
+        while (rgx.test(x1))
+            x1 = x1.replace(rgx, '$1' + ',' + '$2');
+        return x1 + x2;
+    }
 
 graph('jdk11')
 graph('jdk10')
