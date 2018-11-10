@@ -66,6 +66,8 @@ function graph(version) {
                   stacked: false,
                   beginAtZero: true,
                   ticks: {
+                    maxRotation: 15,
+                    minRotation: 0,
                     stepSize: 1,
                     min: 0,
                     autoSkip: false
