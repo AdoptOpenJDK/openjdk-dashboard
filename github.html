@@ -14,12 +14,24 @@
 <body>
   <div class="text-center">
     <h1>AdoptOpenJDK GitHub download stats per release (click a bar for platform stats)</h1></div>
-  <section class="graphs">
-    <div class="box top left"><canvas id="jdk11"></canvas></div>
-    <div class="box top right"><canvas id="jdk10" </canvas></div>
-    <div class="box bottom left"><canvas id="jdk9"></canvas></div>
-    <div class="box bottom right"><canvas id="jdk8"></canvas></div>
-  </section>
+  <!-- <div class="container"> -->
+    <div class="row">
+      <div class="col">
+        <canvas id="jdk11"></canvas>
+      </div>
+      <div class="col">
+        <canvas id="jdk10"></canvas>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <canvas id="jdk9"></canvas>
+      </div>
+      <div class="col">
+        <canvas id="jdk8"></canvas>
+      </div>
+    </div>
+  <!-- </div> -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.slim.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
   <script src="./github.js"></script>
