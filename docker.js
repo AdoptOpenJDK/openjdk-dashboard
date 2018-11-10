@@ -15,7 +15,7 @@ function graph(version) {
           var downloads = [];
           for (var tag of data.results) {
             console.log(tag)
-            labels.push(tag.name)
+            labels.push(tag.name.replace('openj9', 'oj9'))
             downloads.push(tag.pull_count)
           }
           var graphVersion = document.getElementById('graph').getContext('2d');

@@ -15,7 +15,7 @@ function graph(version, tag) {
           var downloads = [];
           for (var platform of data[0].binaries) {
             console.log(platform)
-            labels.push(platform.os + '-' + platform.architecture + '-' + platform.binary_type + '-' + platform.openjdk_impl)
+            labels.push(platform.os + '-' + platform.architecture + '-' + platform.binary_type + '-' + platform.openjdk_impl.replace('openj9', 'oj9').replace('hotspot', 'hspt'))
             downloads.push(platform.download_count)
           }
           var ctx = document.getElementById("graph");

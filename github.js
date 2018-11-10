@@ -13,7 +13,7 @@ function graph(version) {
           var labels = [];
           var downloads = [];
           for (var release in data) {
-            labels.push(data[release].release_name)
+            labels.push(data[release].release_name.replace('openj9', 'oj9'))
             downloads.push(data[release].download_count)
           }
           var graphVersion = document.getElementById(version).getContext('2d');
