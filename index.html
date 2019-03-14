@@ -13,13 +13,35 @@
 
 <body>
   <div class="text-center">
-    <h1>AdoptOpenJDK Download Stats</h1>
+    <img src="./assets/Adopt_logo.svg" height="75em;"></img>
+    <h2>Download Stats</h2>
     <a href="./github.html"><button type="button" class="btn btn-primary">GitHub Download Stats</button></a>
     <a href="./docker.html"><button type="button" class="btn btn-primary">Docker Pull Stats</button></a>
   </div>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.slim.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
-  <script src="./github.js"></script>
+  </div>
+  <div class="row text-center">
+    <div class="col">
+      <div class="counter">
+        <i class="fa fa-download fa-2x"></i>
+        <h2 class="timer count-title count-number" id="counter" data-to="0" data-speed="1500">0</h2>
+        <p class="count-text ">Total Downloads Ever</p>
+      </div>
+    </div>
+  </div>
+  <div class="row text-center" id="versions">
+    <script id="hidden-template" type="text/x-custom-template">
+      <div class="col">
+        <div class="counter">
+          <i class="fa fa-download fa-2x"></i>
+          <h2 class="timer count-title count-number" id="counter" data-to="0" data-speed="1500">0</h2>
+          <p class="count-text ">Downloads</p>
+        </div>
+      </div>
+    </script>
+  </div>
 </body>
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="./index.js"></script>
 
 </html>
