@@ -13,9 +13,8 @@
 
 <body>
   <div class="text-center">
-    <img src="./assets/Adopt_logo.svg" height="75em;"></img>
+    <a href="./"><img src="./assets/Adopt_logo.svg" height="75em;"></img></a>
     <h2>Download Stats</h2>
-    <a href="./github.html"><button type="button" class="btn btn-primary">GitHub Download Stats</button></a>
     <a href="./docker.html"><button type="button" class="btn btn-primary">Docker Pull Stats</button></a>
   </div>
   </div>
@@ -31,11 +30,13 @@
   <div class="row text-center" id="versions">
     <script id="hidden-template" type="text/x-custom-template">
       <div class="col">
-        <div class="counter">
-          <i class="fa fa-download fa-2x"></i>
-          <h2 class="timer count-title count-number" id="counter" data-to="0" data-speed="1500">0</h2>
-          <p class="count-text ">Downloads</p>
-        </div>
+        <a href="./release.html" id="link">
+          <div class="counter">
+            <i class="fa fa-download fa-2x"></i>
+            <h2 class="timer count-title count-number" id="counter" data-to="0" data-speed="1500">0</h2>
+            <p class="count-text ">Downloads</p>
+          </div>
+        </a>
       </div>
     </script>
   </div>

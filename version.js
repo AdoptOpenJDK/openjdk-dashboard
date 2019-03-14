@@ -1,5 +1,5 @@
 function graph(version, tag) {
-  var url = 'https://api.adoptopenjdk.net/v2/info/releases/open' + version + '?release=' + tag;
+  var url = 'https://api.adoptopenjdk.net/v2/info/releases/' + version + '?release=' + tag;
   fetch(url.replace("+", "%2B"))
     .then(
       function(response) {
@@ -107,7 +107,7 @@ var url_string = window.location.href;
 var url = new URL(url_string);
 var version = url.searchParams.get("version");
 if (!version) {
-  alert('please specify a version e.g "?version=jdk8|jdk11"')
+  alert('please specify a version e.g "?version=openjdk8|openjdk11"')
 }
 var tag = url.searchParams.get("tag");
 if (!tag) {
