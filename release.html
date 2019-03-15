@@ -13,28 +13,14 @@
 
 <body>
   <div class="text-center">
-    <h1>AdoptOpenJDK GitHub download stats per release (click a bar for platform stats)</h1></div>
-  <!-- <div class="container"> -->
-    <div class="row">
-      <div class="col">
-        <canvas id="jdk11"></canvas>
-      </div>
-      <div class="col">
-        <canvas id="jdk10"></canvas>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col">
-        <canvas id="jdk9"></canvas>
-      </div>
-      <div class="col">
-        <canvas id="jdk8"></canvas>
-      </div>
-    </div>
-  <!-- </div> -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.slim.js"></script>
+    <a href="./"><img src="./assets/Adopt_logo.svg" height="75em;"></img></a>
+    <h2>Download stats per release (click a bar for platform stats)</h2>
+  </div>
+  <div class="chart-container" style="position: relative; height:40vh; width:80vw">
+    <canvas id="graph"></canvas>
+  </div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
-  <script src="./github.js"></script>
+  <script src="./release.js"></script>
 </body>
 
 </html>

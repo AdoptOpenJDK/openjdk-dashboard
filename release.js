@@ -1,5 +1,6 @@
 function graph(version) {
-  fetch('https://api.adoptopenjdk.net/v2/info/releases/open' + version)
+  var url = 'https://api.adoptopenjdk.net/v2/info/releases/' + version;
+  fetch(url)
     .then(
       function(response) {
         if (response.status !== 200) {
@@ -16,9 +17,9 @@ function graph(version) {
             labels.push(data[release].release_name)
             downloads.push(data[release].download_count)
           }
-          var graphVersion = document.getElementById(version).getContext('2d');
+          var ctx = document.getElementById("graph");
           Chart.defaults.global.defaultFontSize = 15;
-          var myChart = new Chart(graphVersion, {
+          var myChart = new Chart(ctx, {
             type: 'bar',
             data: {
               labels: labels,
@@ -83,13 +84,13 @@ function graph(version) {
       console.log('Fetch Error :-S', err);
     });
 
-  function graphClickEvent(event, array) {
-    if (array[0]) {
-      tag = encodeURIComponent(array[0]._model.label)
-      console.log(tag)
-      window.open('./version.html?version=' + version + '&tag=' + tag ,'_blank');
+    function graphClickEvent(event, array) {
+      if (array[0]) {
+        tag = encodeURIComponent(array[0]._model.label)
+        console.log(tag)
+        window.open('./version.html?version=' + version + '&tag=' + tag ,'_blank');
+      }
     }
-  }
 }
 
 function Comma(Num) { //function to add commas to textboxes
@@ -109,7 +110,10 @@ function Comma(Num) { //function to add commas to textboxes
   return x1 + x2;
 }
 
-graph('jdk11')
-graph('jdk10')
-graph('jdk9')
-graph('jdk8')
+var url_string = window.location.href;
+var url = new URL(url_string);
+var version = url.searchParams.get("version");
+if (!version) {
+  alert('please specify a version e.g "?version=openjdk8|openjdk11"')
+}
+graph(version)

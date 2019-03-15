@@ -13,6 +13,7 @@ const template = $('#hidden-template').html();
 for (var version of java_version) {
   let item = $(template).clone();
   $(item).find('.count-text').html(version);
+  $(item).find('#link').attr("href", "./release.html?version=" + version);
   var settings = {
     "url": `https://api.adoptopenjdk.net/v2/info/releases/${version}`,
     "method": "GET"
