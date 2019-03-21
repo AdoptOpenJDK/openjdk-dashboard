@@ -10,11 +10,9 @@ function graph(version) {
 
         // Examine the text in the response
         response.json().then(function(data) {
-          console.log(data)
           var labels = [];
           var downloads = [];
           for (var tag of data.results) {
-            console.log(tag)
             labels.push(tag.name.replace('openj9', 'oj9'))
             downloads.push(tag.pull_count)
           }

@@ -16,6 +16,10 @@ function graph(version, tag) {
           for (var platform of data[0].binaries) {
             labels.push(platform.os + '-' + platform.architecture + '-' + platform.binary_type + '-' + platform.openjdk_impl.replace('openj9', 'oj9').replace('hotspot', 'hspt'))
             downloads.push(platform.download_count)
+            if (platform.installer_name) {
+              labels.push(platform.os + '-' + platform.architecture + '-' + platform.binary_type + '-' + platform.openjdk_impl.replace('openj9', 'oj9').replace('hotspot', 'hspt') + '-installer')
+              downloads.push(platform.installer_download_count)
+            }
           }
           var ctx = document.getElementById("graph");
           Chart.defaults.global.defaultFontSize = 20;

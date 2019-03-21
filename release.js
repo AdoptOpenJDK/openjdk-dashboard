@@ -87,7 +87,6 @@ function graph(version) {
     function graphClickEvent(event, array) {
       if (array[0]) {
         tag = encodeURIComponent(array[0]._model.label)
-        console.log(tag)
         window.open('./version.html?version=' + version + '&tag=' + tag ,'_blank');
       }
     }
