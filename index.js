@@ -15,6 +15,8 @@ for (var version of java_version) {
   let item = $(template).clone();
   $(item).find('.count-text').html(version);
   $(item).find('#link').attr("href", "./release.html?version=" + version);
+  $(item).css("display", "none");
+  $('#versions').append(item);
   var settings = {
     "url": `https://api.adoptopenjdk.net/v2/info/releases/${version}`,
     "method": "GET"
@@ -28,7 +30,7 @@ for (var version of java_version) {
       release_counter += release.download_count
     }
     $(item).find('#counter').attr("data-to", release_counter);
-    $('#versions').append(item);
+    $(item).css("display", "initial");
     if (counter == java_version.length) {
       document.getElementById("counter").setAttribute("data-to", total);
       setupCounter();
