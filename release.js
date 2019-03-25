@@ -48,7 +48,7 @@ function graph(version) {
                     var meta = chartInstance.controller.getDatasetMeta(i);
                     meta.data.forEach(function(bar, index) {
                       var data = dataset.data[index];
-                      ctx.fillText(Comma(data), bar._model.x, bar._model.y - 5);
+                      ctx.fillText(addComma(data), bar._model.x, bar._model.y - 5);
                     });
                   });
                 }
@@ -90,23 +90,6 @@ function graph(version) {
         window.open('./version.html?version=' + version + '&tag=' + tag ,'_blank');
       }
     }
-}
-
-function Comma(Num) { //function to add commas to textboxes
-  Num += '';
-  Num = Num.replace(',', '');
-  Num = Num.replace(',', '');
-  Num = Num.replace(',', '');
-  Num = Num.replace(',', '');
-  Num = Num.replace(',', '');
-  Num = Num.replace(',', '');
-  x = Num.split('.');
-  x1 = x[0];
-  x2 = x.length > 1 ? '.' + x[1] : '';
-  var rgx = /(\d+)(\d{3})/;
-  while (rgx.test(x1))
-    x1 = x1.replace(rgx, '$1' + ',' + '$2');
-  return x1 + x2;
 }
 
 var url_string = window.location.href;
