@@ -33,3 +33,11 @@ a {
   display: table;
   color: #4ad1e5;
 }
+
+.externals {
+  padding: 3em;
+}
+
+.external-logo {
+  padding-right: 3em;
+}
