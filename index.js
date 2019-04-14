@@ -11,46 +11,57 @@ let total = 0;
 let counter = 0;
 const template = $('#hidden-template').html();
 
-for (var version of java_version) {
+function request(url) {
+  const xmlHttp = new XMLHttpRequest();
+  xmlHttp.open("GET", url, false);
+  xmlHttp.send(null);
+  return JSON.parse(xmlHttp.response);
+}
+
+// Dockerhub pulls
+let docker_stats = request("https://cors-anywhere.herokuapp.com/https://hub.docker.com/v2/repositories/adoptopenjdk?page_size=100")
+for (let repo of docker_stats.results) {
+  total += repo.pull_count
+}
+
+// Github release downloads
+for (let version of java_version) {
   let item = $(template).clone();
   $(item).find('.count-text').html(version);
   $(item).find('#link').attr("href", "./release.html?version=" + version);
   $(item).css("display", "none");
   $('#versions').append(item);
-  var settings = {
-    "url": `https://api.adoptopenjdk.net/v2/info/releases/${version}`,
-    "method": "GET"
+
+  let github_stats = request(`https://api.adoptopenjdk.net/v2/info/releases/${version}`)
+
+  counter += 1;
+  let release_counter = 0
+
+  for (var release of github_stats) {
+    total += release.download_count
+    release_counter += release.download_count
   }
 
-  $.ajax(settings).done(function(releases) {
-    counter += 1;
-    let release_counter=0
-    for (var release of releases) {
-      total += release.download_count
-      release_counter += release.download_count
-    }
-    $(item).find('#counter').attr("data-to", release_counter);
-    $(item).css("display", "initial");
-    if (counter == java_version.length) {
-      document.getElementById("counter").setAttribute("data-to", total);
-      setupCounter();
-    }
-  });
+  $(item).find('#counter').attr("data-to", release_counter);
+  $(item).css("display", "initial");
 }
 
+document.getElementById("counter").setAttribute("data-to", total);
+setupCounter();
+
 function setupCounter() {
-  (function ($) {
-    $.fn.countTo = function (options) {
+  (function($) {
+    $.fn.countTo = function(options) {
       options = options || {};
 
-      return $(this).each(function () {
+      return $(this).each(function() {
         // set options for current element
         var settings = $.extend({}, $.fn.countTo.defaults, {
-          from:            $(this).data('from'),
-          to:              $(this).data('to'),
-          speed:           $(this).data('speed'),
+          from: $(this).data('from'),
+          to: $(this).data('to'),
+          speed: $(this).data('speed'),
           refreshInterval: $(this).data('refresh-interval'),
-          decimals:        $(this).data('decimals')
+          decimals: $(this).data('decimals')
         }, options);
 
         // how many times to update the value, and how much to increment the value on each update
@@ -105,14 +116,14 @@ function setupCounter() {
     };
 
     $.fn.countTo.defaults = {
-      from: 0,               // the number the element should start at
-      to: 0,                 // the number the element should end at
-      speed: 1000,           // how long it should take to count between the target numbers
-      refreshInterval: 100,  // how often the element should be updated
-      decimals: 0,           // the number of decimal places to show
-      formatter: formatter,  // handler for formatting the value before rendering
-      onUpdate: null,        // callback method for every time the element is updated
-      onComplete: null       // callback method for when the element finishes updating
+      from: 0, // the number the element should start at
+      to: 0, // the number the element should end at
+      speed: 1000, // how long it should take to count between the target numbers
+      refreshInterval: 100, // how often the element should be updated
+      decimals: 0, // the number of decimal places to show
+      formatter: formatter, // handler for formatting the value before rendering
+      onUpdate: null, // callback method for every time the element is updated
+      onComplete: null // callback method for when the element finishes updating
     };
 
     function formatter(value, settings) {
@@ -120,12 +131,12 @@ function setupCounter() {
     }
   }(jQuery));
 
-  jQuery(function ($) {
+  jQuery(function($) {
     // custom formatting example
     $('.count-number').data('countToOptions', {
-    formatter: function (value, options) {
-      return value.toFixed(options.decimals).replace(/\B(?=(?:\d{3})+(?!\d))/g, ',');
-    }
+      formatter: function(value, options) {
+        return value.toFixed(options.decimals).replace(/\B(?=(?:\d{3})+(?!\d))/g, ',');
+      }
     });
 
     // start all the timers
