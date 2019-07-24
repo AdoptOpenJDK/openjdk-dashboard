@@ -12,6 +12,11 @@ function graph(version) {
         response.json().then(function(data) {
           var labels = [];
           var downloads = [];
+          // Official Docker pulls
+          let officialDockerStats = request("https://cors-anywhere.herokuapp.com/https://hub.docker.com/v2/repositories/library/adoptopenjdk/")
+          labels.push('official')
+          downloads.push(officialDockerStats.pull_count)
+          
           for (var tag of data.results) {
             labels.push(tag.name.replace('openj9', 'oj9'))
             downloads.push(tag.pull_count)

@@ -11,18 +11,15 @@ let total = 0;
 let counter = 0;
 const template = $('#hidden-template').html();
 
-function request(url) {
-  const xmlHttp = new XMLHttpRequest();
-  xmlHttp.open("GET", url, false);
-  xmlHttp.send(null);
-  return JSON.parse(xmlHttp.response);
-}
-
 // Dockerhub pulls
 let docker_stats = request("https://cors-anywhere.herokuapp.com/https://hub.docker.com/v2/repositories/adoptopenjdk?page_size=100")
 for (let repo of docker_stats.results) {
   total += repo.pull_count
 }
+
+// Official Docker pulls
+let officialDockerStats = request("https://cors-anywhere.herokuapp.com/https://hub.docker.com/v2/repositories/library/adoptopenjdk/")
+total += officialDockerStats.pull_count
 
 // Github release downloads
 for (let version of java_version) {
