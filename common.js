@@ -61,3 +61,10 @@ function generateGraph(labels, downloads, description) {
 function addComma(number) {
     return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
+
+function request(url) {
+  const xmlHttp = new XMLHttpRequest();
+  xmlHttp.open("GET", url, false);
+  xmlHttp.send(null);
+  return JSON.parse(xmlHttp.response);
+}
