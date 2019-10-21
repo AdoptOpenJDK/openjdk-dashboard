@@ -3,7 +3,8 @@ const java_version = [
   "openjdk9",
   "openjdk10",
   "openjdk11",
-  "openjdk12"
+  "openjdk12",
+  "openjdk13"
 ]
 
 // This is the total number displayed on the page
